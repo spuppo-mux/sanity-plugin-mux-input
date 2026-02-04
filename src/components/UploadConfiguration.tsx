@@ -214,9 +214,7 @@ export default function UploadConfiguration({
       return false
     }
 
-    const validateDrmAvailability = (width: number, height: number) => {
-      const isAudioOnly = width === 0 && height === 0
-
+    const validateDrmAvailability = (isAudioOnly: boolean) => {
       if (config.drm_policy && isAudioOnly) {
         setValidationError('Audio-only asset cannot be DRM protected')
         return false
@@ -231,8 +229,8 @@ export default function UploadConfiguration({
     if (videoAssetMetadata?.duration) {
       valid = valid && validateDuration(videoAssetMetadata.duration)
     }
-    if (videoAssetMetadata?.width != undefined && videoAssetMetadata.height != undefined) {
-      valid = valid && validateDrmAvailability(videoAssetMetadata.width, videoAssetMetadata.height)
+    if (videoAssetMetadata?.isAudioOnly != undefined) {
+      valid = valid && validateDrmAvailability(videoAssetMetadata.isAudioOnly)
     }
     if (valid) {
       setValidationError(null)

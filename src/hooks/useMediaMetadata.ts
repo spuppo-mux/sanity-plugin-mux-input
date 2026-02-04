@@ -5,6 +5,7 @@ import {StagedUpload} from '../components/Uploader'
 export interface VideoAssetMetadata {
   width?: number
   height?: number
+  isAudioOnly?: boolean
   duration?: number
   size?: number
 }
@@ -44,14 +45,16 @@ export function useMediaMetadata(stagedUpload: StagedUpload) {
       },
       () => {
         const duration = videoElement.duration
-        const width = videoElement.width
-        const height = videoElement.height
+        const width = videoElement.videoWidth
+        const height = videoElement.videoHeight
+        const isAudioOnly = width <= 0 && height <= 0
         setVideoAssetMetadata((old) => {
           return {
             ...old,
             duration: duration,
             width: width,
             height: height,
+            isAudioOnly: isAudioOnly,
           }
         })
       },
