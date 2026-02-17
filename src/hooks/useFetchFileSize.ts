@@ -26,7 +26,6 @@ export function useFetchFileSize(stagedUpload: StagedUpload, maxFileSize?: numbe
 
           setIsLoadingFileSize(false)
           if (newFileSize) {
-            // setVideoAssetMetadata((old) => ({...old, size: fileSize}))
             setFileSize(newFileSize)
           }
           if (newFileSize === null && maxFileSize !== undefined) {
