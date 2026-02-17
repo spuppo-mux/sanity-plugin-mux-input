@@ -13,7 +13,6 @@ export function useFetchFileSize(stagedUpload: StagedUpload, maxFileSize?: numbe
       setIsLoadingFileSize(false)
       setCanSkipFileSizeValidation(false)
       setFileSize(null)
-      //setVideoAssetMetadata((old) => ({...old, size: undefined}))
       const url = stagedUpload.url
 
       // Get file size from URL
